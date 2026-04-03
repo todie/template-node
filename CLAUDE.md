@@ -1,48 +1,57 @@
-# template-node
+# CLAUDE.md — TypeScript/Node Project (from todie/template-node)
 
-Production-ready Node.js + TypeScript project template.
+## Template Family
+This project was scaffolded from [todie/template-node](https://github.com/todie/template-node).
+See also: [template-rust](https://github.com/todie/template-rust) | [template-python](https://github.com/todie/template-python) | [template-terraform](https://github.com/todie/template-terraform)
 
-## Stack
+## Setup
+- `pnpm install` — install dependencies (uses pnpm, not npm/yarn)
+- `pnpm install --frozen-lockfile` — CI-style install (no lockfile changes)
 
-| Tool | Purpose |
-|------|---------|
-| TypeScript 5 | Type-safe JavaScript |
-| Vitest | Fast unit testing |
-| Biome | Linting + formatting (replaces ESLint + Prettier) |
-| Husky + lint-staged | Pre-commit hooks |
-| pnpm | Fast, disk-efficient package manager |
-| release-please | Automated changelog + GitHub releases |
+## Build & Run
+- `pnpm build` — compile TypeScript
+- `pnpm start` — run the built output
+- `pnpm dev` — development mode (if configured)
 
-## Commands
+## Test
+- `pnpm test` — run tests with Vitest (10x faster than Jest)
+- `pnpm test -- --run` — run once without watch mode
+- `pnpm test -- --coverage` — with coverage report
+- `pnpm test -- -t "test name"` — run specific test
 
-```bash
-pnpm install          # Install dependencies
-pnpm run build        # Compile TypeScript → dist/
-pnpm run build:watch  # Watch mode
-pnpm test             # Run tests once
-pnpm run test:watch   # Watch mode
-pnpm run test:coverage # Run tests with coverage report
-pnpm run lint         # Check lint + format
-pnpm run lint:fix     # Auto-fix lint + format issues
-pnpm run typecheck    # Type-check without emitting
-```
+## Lint & Format
+- `pnpm run lint` — run Biome check (lint + format, 56x faster than ESLint)
+- `pnpm run format` — auto-format with Biome
+- `npx biome check .` — direct Biome invocation
+- `npx biome check . --write` — lint + format with auto-fix
+- Husky + lint-staged runs Biome on pre-commit
 
-## Project structure
+## Type Checking
+- `pnpm run typecheck` or `tsc --noEmit` — strict TypeScript checking
+- tsconfig.json has: strict, noUncheckedIndexedAccess, exactOptionalPropertyTypes
 
-```
-src/           TypeScript source files
-tests/         Unit tests (co-located or in this directory)
-dist/          Compiled output (git-ignored)
-coverage/      Coverage report (git-ignored)
-```
+## Security
+- `pnpm audit` — dependency vulnerability scan
+- Socket.dev GitHub App recommended for supply chain monitoring
 
-## Configuration
+## CI Pipeline
+CI runs on every PR: pnpm install → biome check → tsc --noEmit → vitest → pnpm audit.
 
-- **TypeScript**: strict mode + `noUncheckedIndexedAccess` + `exactOptionalPropertyTypes`
-- **Biome**: 100-char line width, 2-space indent, double quotes, organise imports
-- **Vitest**: 80% coverage thresholds across lines/functions/branches/statements
+## Release
+Uses release-please for automated semver. Write conventional commits:
+- `feat:` → minor bump, `fix:` → patch bump, `feat!:` → major bump
+- `chore:`, `docs:`, `refactor:`, `test:`, `ci:` → no version bump
 
-## CI/CD
+## Commit Discipline
+- One logical change per commit
+- One commit stack per feature branch
+- File a PR for each feature branch
+- Never bundle unrelated changes
+- Never push directly to main
 
-- **CI workflow**: lint → typecheck → test → audit → upload coverage to Codecov
-- **Release workflow**: release-please creates changelog PRs; merging triggers npm publish
+## Architecture Notes
+- Biome replaces ESLint + Prettier (single tool, zero config)
+- Vitest replaces Jest (native ESM, native TypeScript, compatible API)
+- pnpm prevents phantom dependencies (content-addressable store)
+- Docker: multi-stage with dumb-init as PID 1 for proper signal handling
+- Node 22+ required (see .nvmrc)

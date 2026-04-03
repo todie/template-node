@@ -46,3 +46,12 @@ coverage/      Coverage report (git-ignored)
 
 - **CI workflow**: lint → typecheck → test → audit → upload coverage to Codecov
 - **Release workflow**: release-please creates changelog PRs; merging triggers npm publish
+
+
+## Related Templates
+
+| Language | Repository |
+|----------|------------|
+| Rust | [todie/template-rust](https://github.com/todie/template-rust) |
+| Python | [todie/template-python](https://github.com/todie/template-python) |
+| Terraform | [todie/template-terraform](https://github.com/todie/template-terraform) |

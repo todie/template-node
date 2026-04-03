@@ -1,0 +1,30 @@
+{
+  "name": "template-node",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Production-ready Node.js TypeScript template",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@vitest/coverage-v8": "^2.1.9",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.9"
+  }
+}

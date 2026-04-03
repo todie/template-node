@@ -20,6 +20,21 @@ Strict types · Fast tests · Zero-config linting · Automated releases</p>
 
 ---
 
+## todie Template Family
+
+This is the **TypeScript/Node** template. Part of the todie.io standardized project scaffolding.
+
+| Template | Language | Repo |
+|----------|----------|------|
+| template-rust | Rust | [todie/template-rust](https://github.com/todie/template-rust) |
+| template-python | Python 3.12+ | [todie/template-python](https://github.com/todie/template-python) |
+| **template-node** | TypeScript/Node | *you are here* |
+| template-terraform | Terraform/IaC | [todie/template-terraform](https://github.com/todie/template-terraform) |
+
+All templates follow the [todie.io SOP](https://github.com/todie) — consistent CI/CD, linting, security scanning, release automation, and commit discipline across every project.
+
+---
+
 ## Overview
 
 `template-node` is a [GitHub template repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) that gives you a fully wired Node.js project in seconds:
